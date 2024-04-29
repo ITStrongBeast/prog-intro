@@ -1,43 +1,42 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 
 public class Reverse {
     public static void main(String[] args) {
-        try (BufferedReader system = new BufferedReader(new InputStreamReader(System.in, StandardCharsets.UTF_8))) {
-            int[][] fin = new int[5][];
-            int lenfin = 0;
-            while (system.ready()) {
-                if (lenfin == fin.length) {
-                    fin = Arrays.copyOf(fin, fin.length * 2);
+        try (BufferedReader in = new BufferedReader(new InputStreamReader(System.in, StandardCharsets.UTF_8))) {
+            int[][] result = new int[5][];
+            int sizeResult = 0;
+            while (in.ready()) {
+                if (sizeResult == result.length) {
+                    int[][] buffer = new int[result.length * 2][];
+                    System.arraycopy(result, 0, buffer, 0, result.length);
+                    result = buffer;
                 }
-                Scanner line = new Scanner(system.readLine() + " ");
+                StringReader line = new StringReader(in.readLine());
                 int[] buffer = new int[5];
                 int counter = 0;
-                while (line.hasNextInt()) {
+                while (line.ready()) {
                     if (counter == buffer.length) {
                         buffer = Arrays.copyOf(buffer, buffer.length * 2);
                     }
-                    buffer[counter] = line.nextInt();
+                    buffer[counter] = line.read();
                     counter++;
                 }
                 buffer = Arrays.copyOf(buffer, counter);
-                fin[lenfin] = buffer;
-                lenfin++;
+                result[sizeResult] = buffer;
+                sizeResult++;
             }
-            fin = Arrays.copyOf(fin, lenfin);
-
-            for (int i = fin.length - 1; i >= 0; i--) {
-                for (int j = fin[i].length - 1; j >= 0; j--) {
-                    System.out.print(fin[i][j]);
+            System.arraycopy(result, 0, result, 0, sizeResult);
+            for (int i = result.length - 1; i >= 0; i--) {
+                for (int j = result[i].length - 1; j >= 0; j--) {
+                    System.out.print(result[i][j]);
                     System.out.print(" ");
                 }
                 System.out.println();
             }
-        } catch (IOException e){
-            System.out.println(e);
+        } catch (IOException e) {
+            System.out.println("Invalid input: " + e.getMessage());
         }
     }
 }
@@ -68,13 +67,13 @@ import java.util.Arrays;
 
 public class Reverse{
     public static void main(String[] args){
-        Scanner valera = new Scanner(System.in);
+        Scanner valera = new Scanner(in.in);
         String[] start = new String[0];
         while (valera.hasNextLine()){
             start = append(start, valera.nextLine());
         }  
         valera.close();
-        int[][] fin = new int[start.length][];
+        int[][] result = new int[start.length][];
         for (int i = 0; i < start.length; i++){
             Scanner egor1 = new Scanner(start[i]);
             int k = 0;
@@ -82,26 +81,26 @@ public class Reverse{
                 egor1.nextInt();
                 k += 1;
             }
-            fin[i] = new int[k];
+            result[i] = new int[k];
             egor1.close();
             Scanner egor2 = new Scanner(start[i]);
             for (int j = 0; j < k; j++){
-                fin[i][j] = egor2.nextInt();
+                result[i][j] = egor2.nextInt();
             }
             egor2.close()
         }
         for (int i = start.length - 1; i >= 0; i--){
-            for (int j = fin[i].length - 1; j >= 0; j--){
-                System.out.print(fin[i][j]);
-                System.out.print(" ");
+            for (int j = result[i].length - 1; j >= 0; j--){
+                in.out.print(result[i][j]);
+                in.out.print(" ");
             }
-            System.out.println();    
+            in.out.println();    
         }  
     }
 
     public static String[] append(String[] len, String element){
         String[] line = new String[len.length + 1];
-        System.arraycopy(len, 0, line, 0, len.length);
+        in.arraycopy(len, 0, line, 0, len.length);
         line[len.length] = element;
         return line;
     }

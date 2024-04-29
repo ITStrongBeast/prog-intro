@@ -1,21 +1,20 @@
 public class Sum{
-    public static void main(String[] args){
+    public static void main(String[] args) {
         int sum = 0;
-        for(String i: args){ 
-            String start = "";
-            for(int j = 0; j < i.length(); j++){ 
-                String element = Character.toString(i.charAt(j));
-                if("-0123456789".contains(element)){ 
-                    start += element;
-                    if(j == i.length() - 1){
-                        sum += Integer.parseInt(start);
-                        start = "";
-                    }
-                }else if(start != ""){
-                    sum += Integer.parseInt(start);
-                    start = "";
-                }   
+        for (String arg : args) {
+            StringBuilder sb = new StringBuilder();
+            for (char c : arg.toCharArray()) {
+                if (Character.isDigit(c) || c == '-') {
+                    sb.append(c);
+                } else if (!sb.isEmpty()) {
+                    sum += Integer.parseInt(sb.toString());
+                    sb.setLength(0);
+                }
             }
-        }System.out.println(sum);
+            if (!sb.isEmpty()) {
+                sum += Integer.parseInt(sb.toString());
+            }
+        }
+        System.out.println(sum);
     }
 }
