@@ -10,13 +10,11 @@ public class ReverseMinRAbc{
         StringBuilder cod = new StringBuilder();
         if (strmn.charAt(0) == '-'){
             cod.append(strmn.charAt(0));
-            for (int l = 1; l < strmn.length(); l++){
-                cod.append(abc.charAt(Integer.parseInt(String.valueOf(strmn.charAt(l)))));
-            }
         } else {
-            for (int l = 0; l < strmn.length(); l++){
-                cod.append(abc.charAt(Integer.parseInt(String.valueOf(strmn.charAt(l)))));
-            }
+            cod.append(abc.charAt(Integer.parseInt(String.valueOf(strmn.charAt(0)))));
+        }
+        for (int l = 1; l < strmn.length(); l++){
+            cod.append(abc.charAt(Integer.parseInt(String.valueOf(strmn.charAt(l)))));
         }
         return new String(cod);
     }
