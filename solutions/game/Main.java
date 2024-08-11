@@ -2,9 +2,6 @@ package game;
 
 import java.util.*;
 
-/**
- * @author Georgiy Korneev (kgeorgiy@kgeorgiy.info)
- */
 public class Main {
     public static void main(String[] args) {
         try (Scanner inp = new Scanner(System.in)){
