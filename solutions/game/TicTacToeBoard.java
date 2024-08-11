@@ -3,9 +3,6 @@ package game;
 import java.util.Arrays;
 import java.util.Map;
 
-/**
- * @author Georgiy Korneev (kgeorgiy@kgeorgiy.info)
- */
 public class TicTacToeBoard implements Board, Position{
     private final int m;
     private final int n;
